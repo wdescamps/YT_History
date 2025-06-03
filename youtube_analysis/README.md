@@ -38,3 +38,9 @@ nltk.download('punkt')
 
 - The LLM training part (`03_llm_training.ipynb`) currently only sets up data preparation and provides a placeholder for training. Actual LLM fine-tuning is computationally intensive and may require a GPU and further environment configuration.
 - The quality of semantic analysis and topic modeling can be further improved by more advanced text preprocessing, hyperparameter tuning for LDA, and exploring different embedding techniques.
+
+### Note for Apple Silicon (M1/M2) Users
+
+- The current project setup, especially for the LLM notebook (`03_llm_training.ipynb`), uses a CPU-compatible version of PyTorch. Standard Python libraries mentioned should work well on Apple Silicon.
+- If you intend to pursue GPU-accelerated LLM fine-tuning on your M1/M2 Mac in the future, ensure you install a version of PyTorch that supports Apple's Metal Performance Shaders (MPS). You can find installation instructions on the [official PyTorch website](https://pytorch.org/get-started/locally/). The `transformers` library can then leverage MPS for significantly faster training.
+```
