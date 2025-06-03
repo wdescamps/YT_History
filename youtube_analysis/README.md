@@ -9,6 +9,7 @@ This project analyzes YouTube watch history data to demonstrate skills in data c
     - `01_data_cleaning.ipynb`: Loads the raw `watch-history.html`, parses it, cleans the data (timestamps, duplicates, etc.), and saves the result to `cleaned_watch_history.csv`.
     - `02_semantic_analysis.ipynb`: Performs exploratory data analysis (EDA) on the cleaned watch history, including identifying top channels and viewing patterns. It also conducts semantic analysis on video titles using TF-IDF and Latent Dirichlet Allocation (LDA) for topic modeling.
     - `03_llm_training.ipynb`: Prepares the video title data for potential fine-tuning of a Large Language Model. This includes tokenization using Hugging Face `transformers` and provides a commented outline for the model training process.
+    - `04_lightweight_llm_training.ipynb`: Demonstrates fine-tuning a lightweight Large Language Model (DistilGPT2) on the cleaned video titles for text generation. It includes data preparation, a basic training loop (CPU-based), model saving, and an example of generating new text based on prompts.
 
 ## Setup and Dependencies
 
@@ -32,15 +33,17 @@ nltk.download('punkt')
 2.  Run the notebooks sequentially:
     *   Start with `01_data_cleaning.ipynb` to process your history.
     *   Then, run `02_semantic_analysis.ipynb` for EDA and topic modeling.
-    *   Finally, explore `03_llm_training.ipynb` for the LLM data preparation steps.
+    *   Next, explore `03_llm_training.ipynb` for the LLM data preparation steps.
+    *   Optionally, run `04_lightweight_llm_training.ipynb` to experiment with fine-tuning DistilGPT2 and generating text. Be aware that training even this lightweight model can take some time on a CPU.
 
 ## Notes
 
 - The LLM training part (`03_llm_training.ipynb`) currently only sets up data preparation and provides a placeholder for training. Actual LLM fine-tuning is computationally intensive and may require a GPU and further environment configuration.
+- The LLM fine-tuning in `04_lightweight_llm_training.ipynb` uses a small model (DistilGPT2) and a very limited number of training epochs on the CPU. The primary purpose is to demonstrate the process. Generated text quality will be basic and is intended as an illustration rather than a production-ready model. For more advanced results, larger models, more data, and GPU resources would be necessary.
 - The quality of semantic analysis and topic modeling can be further improved by more advanced text preprocessing, hyperparameter tuning for LDA, and exploring different embedding techniques.
 
 ### Note for Apple Silicon (M1/M2) Users
 
-- The current project setup, especially for the LLM notebook (`03_llm_training.ipynb`), uses a CPU-compatible version of PyTorch. Standard Python libraries mentioned should work well on Apple Silicon.
+- The current project setup, especially for the LLM notebooks (`03_llm_training.ipynb` and `04_lightweight_llm_training.ipynb`), uses a CPU-compatible version of PyTorch. Standard Python libraries mentioned should work well on Apple Silicon.
 - If you intend to pursue GPU-accelerated LLM fine-tuning on your M1/M2 Mac in the future, ensure you install a version of PyTorch that supports Apple's Metal Performance Shaders (MPS). You can find installation instructions on the [official PyTorch website](https://pytorch.org/get-started/locally/). The `transformers` library can then leverage MPS for significantly faster training.
 ```
