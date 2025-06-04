@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.env
+env/
+venv/
+ENV/
+VENV/
+*.bak
+*.log
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.nbconvert.*
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+._*
+
+# Fine-tuned models (can be large)
+# Consider uncommenting if you don't want to track these in Git
+# fine_tuned_distilgpt2_youtube_titles/
+# fine_tuned_gpt2_youtube_titles/
+# fine_tuned_gpt2_youtube_transcripts/
+
+# Data files (if large or private)
+# data/watch-history.html # If user-provided and private
+# data/cleaned_watch_history.csv
+# data/video_transcripts.jsonl
+# Consider adding these if they become very large or if watch-history.html is sensitive
+
+# IDE specific
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+```
