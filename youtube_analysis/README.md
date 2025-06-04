@@ -10,6 +10,7 @@ This project analyzes YouTube watch history data to demonstrate skills in data c
     - `02_semantic_analysis.ipynb`: Performs exploratory data analysis (EDA) on the cleaned watch history, including identifying top channels and viewing patterns. It also conducts semantic analysis on video titles using TF-IDF and Latent Dirichlet Allocation (LDA) for topic modeling.
     - `03_llm_training.ipynb`: Prepares the video title data for potential fine-tuning of a Large Language Model. This includes tokenization using Hugging Face `transformers` and provides a commented outline for the model training process.
     - `04_lightweight_llm_training.ipynb`: Demonstrates fine-tuning a lightweight Large Language Model (DistilGPT2) on the cleaned video titles for text generation. It includes data preparation, a basic training loop (CPU-based), model saving, and an example of generating new text based on prompts.
+    - `05_advanced_llm_training_m1.ipynb`: Implements fine-tuning for a more powerful LLM (GPT-2, 124M parameters) specifically targeting Apple Silicon (M1/M2/M3) Macs with MPS for GPU acceleration. It includes device checking, data preparation, a training loop configured for MPS, model saving, and text generation. This notebook demonstrates a more resource-intensive training process compared to the DistilGPT2 example.
 
 ## Setup and Dependencies
 
@@ -26,6 +27,7 @@ import nltk
 nltk.download('stopwords')
 nltk.download('punkt')
 ```
+For Apple Silicon (M1/M2/M3) users wanting to use MPS for GPU acceleration, ensure you install the correct PyTorch version as detailed in the "Important Note for Apple Silicon Users" section below.
 
 ## How to Run
 
@@ -35,6 +37,7 @@ nltk.download('punkt')
     *   Then, run `02_semantic_analysis.ipynb` for EDA and topic modeling.
     *   Next, explore `03_llm_training.ipynb` for the LLM data preparation steps.
     *   Optionally, run `04_lightweight_llm_training.ipynb` to experiment with fine-tuning DistilGPT2 and generating text. Be aware that training even this lightweight model can take some time on a CPU.
+    *   For users with Apple Silicon (M1/M2/M3) Macs, `05_advanced_llm_training_m1.ipynb` provides an example of fine-tuning GPT-2 using MPS. Ensure your PyTorch environment is correctly set up for MPS. Training this model will take significantly longer and use more resources than notebook 04.
 
 ## Notes
 
@@ -42,8 +45,11 @@ nltk.download('punkt')
 - The LLM fine-tuning in `04_lightweight_llm_training.ipynb` uses a small model (DistilGPT2) and a very limited number of training epochs on the CPU. The primary purpose is to demonstrate the process. Generated text quality will be basic and is intended as an illustration rather than a production-ready model. For more advanced results, larger models, more data, and GPU resources would be necessary.
 - The quality of semantic analysis and topic modeling can be further improved by more advanced text preprocessing, hyperparameter tuning for LDA, and exploring different embedding techniques.
 
-### Note for Apple Silicon (M1/M2) Users
+### Important Note for Apple Silicon (M1/M2/M3) Users
 
-- The current project setup, especially for the LLM notebooks (`03_llm_training.ipynb` and `04_lightweight_llm_training.ipynb`), uses a CPU-compatible version of PyTorch. Standard Python libraries mentioned should work well on Apple Silicon.
-- If you intend to pursue GPU-accelerated LLM fine-tuning on your M1/M2 Mac in the future, ensure you install a version of PyTorch that supports Apple's Metal Performance Shaders (MPS). You can find installation instructions on the [official PyTorch website](https://pytorch.org/get-started/locally/). The `transformers` library can then leverage MPS for significantly faster training.
+- **PyTorch with MPS:** To run the training in `05_advanced_llm_training_m1.ipynb` (and to accelerate other PyTorch tasks like in `03_llm_training.ipynb` or `04_lightweight_llm_training.ipynb` if you adapt them for MPS), you **must** have a version of PyTorch installed that supports Apple's Metal Performance Shaders (MPS).
+    - Install the latest stable PyTorch version following instructions from the [official PyTorch website](https://pytorch.org/get-started/locally/) (select the appropriate options for your Mac, typically "Stable", "macOS", "Python", and "Default" or "MPS").
+    - Notebook `05_advanced_llm_training_m1.ipynb` includes code to automatically detect and use MPS if available.
+- **Resource Usage for `05_advanced_llm_training_m1.ipynb`:** Fine-tuning GPT-2 is considerably more demanding than DistilGPT2. Expect longer training times (even with MPS) and higher memory consumption. The provided settings (e.g., batch size, epochs) are starting points and may need adjustment based on your specific M1/M2/M3 configuration (Pro, Max, Ultra, RAM).
+- The earlier notebooks (`01` to `04`) are designed to be more generally compatible and will run on CPU if MPS is not configured or if you are not on Apple Silicon.
 ```
