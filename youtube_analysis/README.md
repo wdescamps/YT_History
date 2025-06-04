@@ -51,6 +51,7 @@ For Apple Silicon (M1/M2/M3) users wanting to use MPS for GPU acceleration, ensu
     - **Start with `MAX_VIDEOS_TO_PROCESS` set to a very low number (e.g., 5-10) within the notebook.** Attempting to process hundreds of videos will take an extremely long time and may exhaust resources or lead to API rate-limiting.
     - Fine-tuning GPT-2 on concatenated transcripts, even for a few videos, will require significant time and memory, even with MPS acceleration.
     - The quality of the fine-tuned model will heavily depend on the amount and quality of the transcript data successfully fetched and processed.
+    - Note: The transcript fetching logic in `06_transcript_llm_training.ipynb` uses exception handling that targets recent versions of the `youtube-transcript-api`. If you encounter import errors related to specific exceptions from this library, or issues with transcript fetching, you may need to adjust the `try...except` blocks in that notebook to match the version you have installed or consult the API's documentation for the latest exception types.
 
 ### Important Note for Apple Silicon (M1/M2/M3) Users
 
