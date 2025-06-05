@@ -13,6 +13,12 @@ ENV/
 VENV/
 *.bak
 *.log
+*.json
+*.txt
+*.safetensors
+*.html
+*.jsonl
+*.csv
 
 # Jupyter Notebook
 .ipynb_checkpoints
