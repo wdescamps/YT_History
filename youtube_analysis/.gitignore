@@ -40,4 +40,11 @@ Thumbs.db
 .idea/
 *.sublime-workspace
 *.sublime-project
+*.json
+*.jsonl
+*.txt
+*.html
+*.csv
+*.safetensors
+
 ```
